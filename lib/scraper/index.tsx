@@ -1,11 +1,11 @@
-import { extractCurrency, extractDescription, extractPrice } from "../utils";
+"use server"
 
-const axios = require('axios');
-const cheerio = require('cheerio');
+import axios from 'axios';
+import * as cheerio from 'cheerio';
+import { extractCurrency, extractDescription, extractPrice } from '../utils';
 
-export default async function scrapeAmazonProduct(url:string) {
-  if (!url) return null;
-
+export async function scrapeAmazonProduct(url: string) {
+  if(!url) return;
   try {
     // Fetch the product page
     const response = await axios.get(url);
@@ -60,7 +60,7 @@ export default async function scrapeAmazonProduct(url:string) {
       highestPrice: Number(originalPrice) || Number(currentPrice),
       averagePrice: Number(currentPrice) || Number(originalPrice),
     }
-    // console.log(data);
+
     return data;
   } catch (error: any) {
     console.log(error);

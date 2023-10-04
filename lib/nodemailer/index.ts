@@ -103,4 +103,4 @@ export const sendEmail = async (emailContent: EmailContent, sendTo: string[]) =>
     
     console.log('Email sent: ', info);
   })
-} 
+}
